@@ -4,7 +4,7 @@
  * Plugin URI: https://gist.github.com/helgatheviking/ffbf9d1c82351fb9220ff91ce61f7518
  * Donate link: https://www.youcaring.com/wnt-residency
  * Description: Show the KIA Subtitle on WooCommerce products.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Kathy Darling
  * Author URI: http://kathyisawesome.com
  * Requires at least: 3.8
@@ -29,10 +29,15 @@ function kia_add_subtitle_to_loop_product(){
 }
 add_action( 'woocommerce_shop_loop_item_title', 'kia_add_subtitle_to_loop_product', 20 );
 
-// shop loop page
+// Shop loop page
 function kia_add_subtitle_to_shop() {
-	if( function_exists( 'the_subtitle' ) && function_exists( 'is_shop' ) && is_shop() ) {
-		the_subtitle( '<h2 class="subtitle">', '</h2>' );
+	if( function_exists( 'get_the_subtitle' ) && function_exists( 'is_shop' ) && is_shop() ) {
+		
+		$subtitle = get_the_subtitle( wc_get_page_id( 'shop' ) );
+		
+		if( $subtitle ) {
+			echo '<h2 class="subtitle">' . $subtitle . '</h2>';
+		}
 	}
 }
 add_action( 'woocommerce_archive_description', 'kia_add_subtitle_to_shop' );
