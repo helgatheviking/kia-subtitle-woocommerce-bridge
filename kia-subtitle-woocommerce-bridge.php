@@ -4,7 +4,7 @@
  * Plugin URI: https://gist.github.com/helgatheviking/ffbf9d1c82351fb9220ff91ce61f7518
  * Donate link: https://www.youcaring.com/wnt-residency
  * Description: Show the KIA Subtitle on WooCommerce products.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Kathy Darling
  * Author URI: http://kathyisawesome.com
  * Requires at least: 4.5.0
