@@ -46,28 +46,13 @@ function kia_add_subtitle_to_cart_product( $title, $cart_item ){
 }
 add_filter( 'woocommerce_cart_item_name', 'kia_add_subtitle_to_cart_product', 10, 2 );
 
-function kia_add_subtitle_to_order_product( $title, $order_item, $is_visible = true ){
-    if( $is_visible && function_exists( 'get_the_subtitle' ) && ( $subtitle = get_the_subtitle( $order_item['product_id'] ) ) ) {
 // Order product.
+function kia_add_subtitle_to_order_product( $title, $order_item ) {
+    if( function_exists( 'get_the_subtitle' ) && ( $subtitle = get_the_subtitle( $order_item->get_product_id() ) ) ) {
     	$title .= '<br/><span class="subtitle">' . $subtitle . '</span>';
     }
     return $title;
 }
-add_filter( 'woocommerce_order_item_name', 'kia_add_subtitle_to_order_product', 10, 3 );
-
-
-// email product
-function kia_add_subtitle_to_email_product( $items, $order ){
-	if( function_exists( 'get_the_subtitle' ) ) {
-	    foreach( $items as $item_id => $item ){
-	    	if( isset ( $item['product_id'] ) && ( $subtitle = get_the_subtitle( $item['product_id'] ) ) != '' ){
-	    		$items[ $item_id ]['name'] = $item['name'] . ': ' . $subtitle;
-	    	}
-	    }
-	}
-    return $items;
-}
-add_filter( 'woocommerce_order_get_items', 'kia_add_subtitle_to_email_product', 10, 3 );
-
+add_filter( 'woocommerce_order_item_name', 'kia_add_subtitle_to_order_product', 10, 2 );
 
 
