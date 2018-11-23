@@ -31,9 +31,14 @@ add_action( 'woocommerce_shop_loop_item_title', 'kia_add_subtitle_to_loop_produc
 
 // Shop loop page.
 function kia_add_subtitle_to_shop() {
-	if( function_exists( 'the_subtitle' ) && function_exists( 'is_shop' ) && is_shop() ) {
-		the_subtitle( '<h2 class="subtitle">', '</h2>' );
-	}
+	if( function_exists( 'get_the_subtitle' ) && function_exists( 'is_shop' ) && is_shop() ) {
+			
+			$subtitle = get_the_subtitle( wc_get_page_id( 'shop' ) );
+			
+			if( $subtitle ) {
+				echo '<h2 class="subtitle">' . $subtitle . '</h2>';
+			}
+		}
 }
 add_action( 'woocommerce_archive_description', 'kia_add_subtitle_to_shop' );
 
