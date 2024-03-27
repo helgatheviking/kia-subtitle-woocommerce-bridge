@@ -19,23 +19,23 @@
 
 // Single product.
 function kia_add_subtitle_to_single_product(){
-	if( function_exists( 'the_subtitle' ) ) the_subtitle( '<h2 class="subtitle">', '</h2>' );
+	if ( function_exists( 'the_subtitle' ) ) the_subtitle( '<h2 class="subtitle">', '</h2>' );
 }
 add_action( 'woocommerce_single_product_summary', 'kia_add_subtitle_to_single_product', 7 );
 
 // Loop product.
 function kia_add_subtitle_to_loop_product(){
-	if( function_exists( 'the_subtitle' ) ) the_subtitle( '<h4 class="subtitle">', '</h4>' );
+	if ( function_exists( 'the_subtitle' ) ) the_subtitle( '<h4 class="subtitle">', '</h4>' );
 }
 add_action( 'woocommerce_shop_loop_item_title', 'kia_add_subtitle_to_loop_product', 20 );
 
 // Shop loop page.
 function kia_add_subtitle_to_shop() {
-	if( function_exists( 'get_the_subtitle' ) && function_exists( 'is_shop' ) && is_shop() ) {
+	if ( function_exists( 'get_the_subtitle' ) && function_exists( 'is_shop' ) && is_shop() ) {
 			
 			$subtitle = get_the_subtitle( wc_get_page_id( 'shop' ) );
 			
-			if( $subtitle ) {
+			if ( $subtitle ) {
 				echo '<h2 class="subtitle">' . $subtitle . '</h2>';
 			}
 		}
@@ -44,7 +44,7 @@ add_action( 'woocommerce_archive_description', 'kia_add_subtitle_to_shop' );
 
 // Cart product.
 function kia_add_subtitle_to_cart_product( $title, $cart_item ){
-    if( function_exists( 'get_the_subtitle' ) && ( $subtitle = get_the_subtitle( $cart_item['product_id'] ) ) ) {
+    if ( function_exists( 'get_the_subtitle' ) && ( $subtitle = get_the_subtitle( $cart_item['product_id'] ) ) ) {
     	$title .= '<br/><span class="subtitle">' . $subtitle . '</span>';
     }
     return $title;
@@ -53,7 +53,7 @@ add_filter( 'woocommerce_cart_item_name', 'kia_add_subtitle_to_cart_product', 10
 
 // Order product.
 function kia_add_subtitle_to_order_product( $title, $order_item ) {
-    if( function_exists( 'get_the_subtitle' ) && ( $subtitle = get_the_subtitle( $order_item->get_product_id() ) ) ) {
+    if ( function_exists( 'get_the_subtitle' ) && ( $subtitle = get_the_subtitle( $order_item->get_product_id() ) ) ) {
     	$title .= '<br/><span class="subtitle">' . $subtitle . '</span>';
     }
     return $title;
